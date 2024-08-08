@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "com.example.core"
     compileSdk = 34
 
     defaultConfig {
@@ -35,18 +33,8 @@ android {
 }
 
 dependencies {
-    // Dagger Hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.gson)
-
-    // Room
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    ksp(libs.room.compiler)
+    // Core
+    implementation(libs.androidx.core.ktx)
 
     testImplementation(libs.junit)
 }
