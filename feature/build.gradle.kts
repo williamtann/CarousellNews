@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.example.feature"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
     // Dagger Hilt
     implementation(libs.hilt.android)
@@ -69,8 +71,16 @@ dependencies {
     // Coil
     implementation(libs.coil)
 
+    // Unit Test
     testImplementation(libs.junit)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk.test)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine.test)
 
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // UI Test
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
 }

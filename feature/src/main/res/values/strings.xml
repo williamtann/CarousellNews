@@ -3,4 +3,6 @@
     <string name="carousell_news">Carousell News</string>
     <string name="sort_recent">Recent</string>
     <string name="sort_popular">Popular</string>
+    <string name="failed_to_load_news_error">Failed to load news</string>
+    <string name="retry_button">Retry</string>
 </resources>

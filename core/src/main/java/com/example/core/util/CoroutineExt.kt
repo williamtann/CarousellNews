@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 
 fun CoroutineScope.safeLaunch(
     block: suspend CoroutineScope.() -> Unit,
-    onError: (e: Exception) -> Unit = {},
-    onFinish: () -> Unit = {}
+    onError: suspend (e: Exception) -> Unit = {},
+    onFinish: suspend () -> Unit = {}
 ): Job = launch {
     try {
         block()

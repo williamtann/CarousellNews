@@ -8,3 +8,9 @@ sealed interface NewsListEvent {
     data object LoadNews : NewsListEvent
     data class SortNews(val sortType: SortType) : NewsListEvent
 }
+
+
+sealed interface NewsListUiEvent {
+
+    data object ShowError : NewsListUiEvent
+}

@@ -2,11 +2,13 @@ package com.example.feature.component.sort
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.HorizontalDivider
@@ -18,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -30,6 +33,7 @@ import com.example.feature.R
 
 @Composable
 fun SortButton(
+    selectedSort: SortType,
     onSortSelected: (SortType) -> Unit
 ) {
     var menuExpanded by remember { mutableStateOf(false) }
@@ -57,32 +61,54 @@ fun SortButton(
                 menuExpanded = false
             }
         ) {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .rippleClickable {
-                        onSortSelected(SortType.recent)
-                        menuExpanded = false
-                    }
-                    .padding(
-                        horizontal = 12.dp,
-                        vertical = 8.dp
-                    ),
-                text = stringResource(R.string.sort_recent)
+            SortItem(
+                label = stringResource(R.string.sort_recent),
+                isSelected = selectedSort == SortType.Recent,
+                onClick = {
+                    onSortSelected(SortType.Recent)
+                    menuExpanded = false
+                }
             )
             HorizontalDivider()
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .rippleClickable {
-                        onSortSelected(SortType.popular)
-                        menuExpanded = false
-                    }
-                    .padding(
-                        horizontal = 12.dp,
-                        vertical = 4.dp
-                    ),
-                text = stringResource(R.string.sort_popular)
+            SortItem(
+                label = stringResource(R.string.sort_popular),
+                isSelected = selectedSort == SortType.Popular,
+                onClick = {
+                    onSortSelected(SortType.Popular)
+                    menuExpanded = false
+                }
+            )
+        }
+    }
+}
+
+@Composable
+fun SortItem(
+    label: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .rippleClickable {
+                onClick()
+            }
+            .padding(
+                horizontal = 12.dp,
+                vertical = 8.dp
+            ),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = label
+        )
+        if (isSelected) {
+            Icon(
+                modifier = Modifier.size(16.dp),
+                imageVector = Icons.Default.Check,
+                contentDescription = null
             )
         }
     }
@@ -92,6 +118,7 @@ fun SortButton(
 @Composable
 fun SortButtonPreview() {
     SortButton(
+        selectedSort = SortType.Recent,
         onSortSelected = {}
     )
 }

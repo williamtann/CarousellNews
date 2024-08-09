@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.domain"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -42,5 +42,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    // Unit Test
     testImplementation(libs.junit)
+    testImplementation(libs.mockk.test)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

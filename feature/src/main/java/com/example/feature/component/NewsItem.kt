@@ -5,9 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -17,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,12 +33,12 @@ import com.example.domain.model.NewsUiModel
 fun LazyItemScope.NewsItem(
     item: NewsUiModel,
     context: Context,
-    currentTime: Long
+    currentTime: Long,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .animateItem()
-            .fillMaxWidth()
             .shadow(
                 elevation = 4.dp,
                 shape = RoundedCornerShape(8.dp)
@@ -83,25 +86,25 @@ fun LazyItemScope.NewsItem(
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview
 @Composable
 fun NewsItemPreview() {
-//    LazyColumn(
-//        modifier = Modifier.fillMaxSize()
-//    ) {
-//        item {
-//            NewsItem(
-//                item = NewsUiModel(
-//                    id = "",
-//                    title = "title",
-//                    description = "description",
-//                    bannerUrl = "",
-//                    timeCreated = 1532853058,
-//                    rank = 0
-//                ),
-//                context = LocalContext.current,
-//                currentTime = 1532856058
-//            )
-//        }
-//    }
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        item {
+            NewsItem(
+                item = NewsUiModel(
+                    id = "",
+                    title = "title",
+                    description = "description",
+                    bannerUrl = "",
+                    timeCreated = 1532853058,
+                    rank = 0
+                ),
+                context = LocalContext.current,
+                currentTime = 1532856058
+            )
+        }
+    }
 }

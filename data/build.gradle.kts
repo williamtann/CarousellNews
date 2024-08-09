@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.data"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -48,5 +48,8 @@ dependencies {
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
+    // Unit Test
     testImplementation(libs.junit)
+    testImplementation(libs.mockk.test)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
