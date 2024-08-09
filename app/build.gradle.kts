@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -53,6 +53,7 @@ dependencies {
     // Modules
     implementation(project(":feature"))
     implementation(project(":domain"))
+    implementation(project(":core"))
 
     // Core
     implementation(libs.androidx.core.ktx)

@@ -1,5 +1,7 @@
 package com.example.domain.di
 
+import com.example.domain.local.impl.LocalGetNewsListUseCaseImpl
+import com.example.domain.local.usecase.LocalGetNewsListUseCase
 import com.example.domain.remote.impl.RemoteGetNewsListUseCaseImpl
 import com.example.domain.remote.usecase.RemoteGetNewsListUseCase
 import dagger.Binds
@@ -14,5 +16,9 @@ abstract class BinderModule {
 
     @Binds
     @Singleton
-    abstract fun bindsRemoteGetNewsListUseCase(imple: RemoteGetNewsListUseCaseImpl): RemoteGetNewsListUseCase
+    abstract fun bindsLocalGetNewsListUseCase(impl: LocalGetNewsListUseCaseImpl): LocalGetNewsListUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindsRemoteGetNewsListUseCase(impl: RemoteGetNewsListUseCaseImpl): RemoteGetNewsListUseCase
 }

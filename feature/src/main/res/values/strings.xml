@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="carousell_news">Carousell News</string>
+    <string name="sort_recent">Recent</string>
+    <string name="sort_popular">Popular</string>
+</resources>
